@@ -21,12 +21,12 @@ exports.getById = async (req, res, next) => {
 
 // Ici c'est le callback qui servira à ajouter un user
 exports.add = async (req, res, next) => {
-    const temp = {
+    const temp = ({
       name: req.body.name,
       firstname: req.body.firstname,
       email: req.body.email,
       password: req.body.password
-    };
+    });
   
     try {
       let user = await User.create(temp);
@@ -39,17 +39,17 @@ exports.add = async (req, res, next) => {
   // Ici c'est le callback qui servira à modifier un user
 exports.update = async (req, res, next) => {
     const id = req.params.id;
-    const temp = {
+    const temp = ({
         name: req.body.name,
         firstname: req.body.firstname,
         email: req.body.email,
         password: req.body.password
-    };
+    });
 
     try {
         let user = await User.findOne({ _id: id });
         if (user) {
-            Object.keys(temp).forEach(key => {
+            Object.keys(temp).forEach((key) => {
                 if (!!temp[key]) {
                     user[key] = temp[key];
                 }
@@ -57,10 +57,11 @@ exports.update = async (req, res, next) => {
             await user.save();
             return res.status(201).json(user);
         }
+      return res.status(404).json('user_not_found');
     } catch (error) {
-        return res.status(404).json('user_not_found');
+      return res.status(501).json(error);
     }
-    return res.status(501).json(error);
+    
 }
 
 // Ici c'est le callback qui servira à supprimer un user

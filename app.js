@@ -33,3 +33,16 @@ app.use(function(req, res, next) {
 });
 
 module.exports = app;
+
+
+
+// {
+//   "name": "tom",
+//   "firstname": "tom",
+//   "email": "tom@tom.com",
+//   "password": "123",
+//   "_id": "675a16051db747763c1f0d35",
+//   "createdAt": "2024-12-11T22:45:25.454Z",
+//   "updatedAt": "2024-12-11T22:45:25.454Z",
+//   "__v": 0
+// }
